@@ -1,0 +1,10 @@
+v: 0
+app_name: "Compapol Backend"
+micros:
+  - name: compapol-api
+    src: ./
+    engine: nodejs16
+    primary: true
+    commands:
+      - npm install
+    run: npm start
