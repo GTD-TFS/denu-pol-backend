@@ -1,5 +1,5 @@
 {
-  "name": "compapol-denuncias",
+  "name": "compapol-denuncias-cloudrun",
   "version": "1.0.0",
   "private": true,
   "type": "module",
