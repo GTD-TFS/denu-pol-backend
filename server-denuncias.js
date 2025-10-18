@@ -1,14 +1,16 @@
-// server-denuncias.js — Backend DENUNCIAS (Express + Groq)
-// Endpoint: POST /api/police-draft  · env: GROQ_API_KEY, MODEL (opcional)
+// server-denuncias.js — Backend DENUNCIAS (Express + Groq) para Cloud Run
+// Escucha en PORT (Cloud Run usa 8080). Env: GROQ_API_KEY (obligatoria), MODEL (opcional)
 
 import express from "express";
 import cors from "cors";
 
 const app = express();
-app.use(cors());
+app.use(cors()); // CORS abierto para tu front (GitHub Pages, etc.)
 app.use(express.json({ limit: "2mb" }));
 
-app.get("/healthz", (_req, res) => res.json({ ok: true, time: new Date().toISOString() }));
+app.get("/healthz", (_req, res) =>
+  res.json({ ok: true, time: new Date().toISOString() })
+);
 
 /* ======== PROMPT & FEW-SHOTS ======== */
 const SYSTEM_DENUNCIA = `
@@ -136,5 +138,5 @@ app.post("/api/police-draft", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080; // Cloud Run escucha en 8080
 app.listen(PORT, () => console.log(`✅ DENUNCIAS listo en :${PORT}`));
